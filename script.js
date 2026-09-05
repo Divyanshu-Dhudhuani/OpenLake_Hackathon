@@ -351,3 +351,22 @@ document.addEventListener('DOMContentLoaded', () => {
         loadTrack('webdev');
     }
 });
+async function fetchOpenLakeStats() {
+    try {
+        const response = await fetch('https://api.github.com/orgs/openlake/repos');
+        const repos = await response.json();
+        
+        if (Array.isArray(repos)) {
+            const totalStars = repos.reduce((acc, repo) => acc + repo.stargazers_count, 0);
+            const totalForks = repos.reduce((acc, repo) => acc + repo.forks_count, 0);
+            
+            document.getElementById('statStars').textContent = totalStars;
+            document.getElementById('statRepos').textContent = repos.length;
+            document.getElementById('statForks').textContent = totalForks;
+        }
+    } catch (err) {
+        console.error('Failed to load GitHub stats:', err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', fetchOpenLakeStats);

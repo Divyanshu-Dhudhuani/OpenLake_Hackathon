@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenLake - First PR Sandbox</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .sandbox-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .guide-box {
+            background: var(--card-bg, rgba(255, 255, 255, 0.85));
+            border: 1px solid var(--card-border, rgba(0, 168, 232, 0.25));
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+        }
+
+        .step-badge {
+            background: #00a8e8;
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+
+        .terminal-window {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            font-family: 'Courier New', Courier, monospace;
+            cursor: text;
+        }
+
+        .terminal-header {
+            background: #1e293b;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .terminal-body {
+            padding: 20px;
+            min-height: 320px;
+            max-height: 450px;
+            overflow-y: auto;
+            color: #f8fafc;
+        }
+
+        .cmd-output {
+            margin-bottom: 12px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+
+        .cmd-line {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .prompt {
+            color: #38bdf8;
+            font-weight: bold;
+        }
+
+        .term-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: #f8fafc;
+            font-family: inherit;
+            font-size: 1rem;
+            flex: 1;
+        }
+
+        .success-banner {
+            display: none;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid #10b981;
+            color: #10b981;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bgCanvas"></canvas>
+
+    <main class="sandbox-container">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <span class="badge" style="background: rgba(0,168,232,0.15); color: #00a8e8; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem;">INTERACTIVE PLAYGROUND</span>
+            <h1 style="font-size: 2.5rem; margin: 12px 0 8px;">First Pull Request Simulator</h1>
+            <p style="color: var(--text-secondary, #4a5568); font-size: 1.1rem;">Practice Git commands in a safe terminal environment before making your real contribution.</p>
+        </div>
+
+        <div class="guide-box">
+            <span class="step-badge" id="stepBadge">Task 1 of 5</span>
+            <h3 id="taskTitle" style="margin: 12px 0 6px;">Clone the repository</h3>
+            <p id="taskDesc" style="color: var(--text-secondary, #4a5568); margin: 0;">Type <code>git clone https://github.com/openlake/first-pr.git</code> to download the repository locally.</p>
+        </div>
+
+        <div class="terminal-window" onclick="document.getElementById('termInput').focus()">
+            <div class="terminal-header">
+                <span class="dot" style="background: #ef4444;"></span>
+                <span class="dot" style="background: #f59e0b;"></span>
+                <span class="dot" style="background: #10b981;"></span>
+                <span style="color: #94a3b8; font-size: 0.85rem; margin-left: 10px;">bash — openlake-sandbox</span>
+            </div>
+            <div class="terminal-body" id="termBody">
+                <div class="cmd-output" style="color: #94a3b8;">Welcome to OpenLake Git Simulator v1.0.0
+Type commands below to practice your open-source contribution workflow.
+------------------------------------------------------------------------</div>
+                <div class="cmd-line" id="inputLine">
+                    <span class="prompt" id="promptText">user@openlake:~$</span>
+                    <input type="text" id="termInput" class="term-input" autofocus autocomplete="off" spellcheck="false">
+                </div>
+            </div>
+        </div>
+
+        <div class="success-banner" id="successBanner">
+            <h2>🎉 Congratulations!</h2>
+            <p>You have successfully simulated your first open-source Pull Request workflow.</p>
+            <a href="https://github.com/openlake" target="_blank" style="display: inline-block; margin-top: 12px; background: #00a8e8; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 20px; font-weight: 600;">Explore OpenLake Repositories</a>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        const steps = [
+            {
+                task: "Clone the repository",
+                desc: "Type <code>git clone https://github.com/openlake/first-pr.git</code> to clone the code.",
+                expected: "git clone https://github.com/openlake/first-pr.git",
+                output: "Cloning into 'first-pr'...\nremote: Enumerating objects: 42, done.\nremote: Total 42 (delta 0), reused 0\nUnpacking objects: 100% (42/42), done.",
+                newPrompt: "user@openlake:~/first-pr$"
+            },
+            {
+                task: "Create a feature branch",
+                desc: "Type <code>git checkout -b add-my-name</code> to switch to a new working branch.",
+                expected: "git checkout -b add-my-name",
+                output: "Switched to a new branch 'add-my-name'",
+                newPrompt: "user@openlake:~/first-pr (add-my-name)$"
+            },
+            {
+                task: "Stage your changes",
+                desc: "Type <code>git add .</code> to stage your updated file.",
+                expected: "git add .",
+                output: "",
+                newPrompt: "user@openlake:~/first-pr (add-my-name)$"
+            },
+            {
+                task: "Commit your changes",
+                desc: "Type <code>git commit -m \"Add my profile\"</code> to commit your changes with a message.",
+                expected: "git commit -m \"Add my profile\"",
+                output: "[add-my-name a1b2c3d] Add my profile\n 1 file changed, 1 insertion(+)",
+                newPrompt: "user@openlake:~/first-pr (add-my-name)$"
+            },
+            {
+                task: "Push to remote repository",
+                desc: "Type <code>git push origin add-my-name</code> to push your branch.",
+                expected: "git push origin add-my-name",
+                output: "Enumerating objects: 5, done.\nWriting objects: 100% (3/3), 320 bytes | 320.00 KiB/s, done.\nTo https://github.com/openlake/first-pr.git\n * [new branch]      add-my-name -> add-my-name\nBranch 'add-my-name' set up to track remote branch 'add-my-name' from 'origin'.",
+                newPrompt: "user@openlake:~/first-pr (add-my-name)$"
+            }
+        ];
+
+        let currentStep = 0;
+        const termInput = document.getElementById('termInput');
+        const termBody = document.getElementById('termBody');
+        const inputLine = document.getElementById('inputLine');
+        const promptText = document.getElementById('promptText');
+
+        termInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const val = termInput.value.trim();
+                if (!val) return;
+
+                // Create history line
+                const historyLine = document.createElement('div');
+                historyLine.className = 'cmd-output';
+                historyLine.innerHTML = `<span class="prompt">${promptText.textContent}</span> ${val}`;
+                termBody.insertBefore(historyLine, inputLine);
+
+                // Clear input
+                termInput.value = '';
+
+                if (currentStep < steps.length) {
+                    const step = steps[currentStep];
+
+                    if (val.toLowerCase() === step.expected.toLowerCase()) {
+                        if (step.output) {
+                            const outputLine = document.createElement('div');
+                            outputLine.className = 'cmd-output';
+                            outputLine.style.color = '#10b981';
+                            outputLine.textContent = step.output;
+                            termBody.insertBefore(outputLine, inputLine);
+                        }
+
+                        currentStep++;
+                        if (currentStep < steps.length) {
+                            promptText.textContent = steps[currentStep].newPrompt || promptText.textContent;
+                            updateTaskUI();
+                        } else {
+                            // Completed all steps
+                            document.getElementById('successBanner').style.display = 'block';
+                            document.getElementById('taskTitle').textContent = "All tasks complete!";
+                            document.getElementById('taskDesc').textContent = "You are ready to contribute to real OpenLake projects on GitHub!";
+                            document.getElementById('stepBadge').textContent = "Completed 🎉";
+                            inputLine.style.display = 'none';
+                        }
+                    } else {
+                        const errorLine = document.createElement('div');
+                        errorLine.className = 'cmd-output';
+                        errorLine.style.color = '#ef4444';
+                        errorLine.textContent = `Invalid command. Expected: ${step.expected}`;
+                        termBody.insertBefore(errorLine, inputLine);
+                    }
+                }
+
+                // Auto scroll to bottom
+                termBody.scrollTop = termBody.scrollHeight;
+            }
+        });
+
+        function updateTaskUI() {
+            const step = steps[currentStep];
+            document.getElementById('stepBadge').textContent = `Task ${currentStep + 1} of ${steps.length}`;
+            document.getElementById('taskTitle').textContent = step.task;
+            document.getElementById('taskDesc').innerHTML = step.desc;
+        }
+    </script>
+</body>
+</html>
