@@ -834,3 +834,13 @@ html, body {
     box-shadow: 0 8px 20px rgba(0, 168, 232, 0.3);
     transform: translateY(-2px);
 }
+/* Background Interactive Canvas */
+#bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1; /* Ensures canvas stays behind text and cards */
+    pointer-events: none; /* Prevents interference with scrolling and button clicks */
+}
