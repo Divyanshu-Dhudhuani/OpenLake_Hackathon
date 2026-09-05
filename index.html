@@ -340,6 +340,40 @@
                 </div>
             </div>
         </section>
+        <!-- Interactive Tech Stack Roadmap Section -->
+<section class="roadmap-section">
+    <div class="roadmap-container">
+        <div style="text-align: center;">
+            <span class="badge" style="background: rgba(0,168,232,0.15); color: #00a8e8; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem;">LEARNING PATHWAYS</span>
+            <h2 style="font-size: 2.5rem; margin: 12px 0 8px;">Interactive Tech Roadmaps</h2>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">Click on any step to checkout the resources.</p>
+        </div>
+
+        <div class="track-selector">
+            <button class="track-btn active" onclick="loadTrack('webdev', event)">🌐 Web Development</button>
+            <button class="track-btn" onclick="loadTrack('appdev', event)">📱 App Development</button>
+            <button class="track-btn" onclick="loadTrack('aiml', event)">🤖 AI / ML</button>
+        </div>
+
+        <div class="roadmap-timeline" id="timeline">
+            <!-- Dynamically populated via script -->
+        </div>
+    </div>
+</section>
+
+<!-- Roadmap Side Drawer Modal -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+    <button class="close-drawer" onclick="closeDrawer()">&times;</button>
+    <h2 id="drawerTitle" style="margin-top: 10px;">Topic Title</h2>
+    <p id="drawerDesc" style="color: var(--text-secondary); margin: 12px 0;"></p>
+    <hr style="border: none; border-top: 1px solid var(--card-border); margin: 20px 0;">
+    
+    <h3 style="color: var(--text-primary);">📚 Recommended Resources</h3>
+    <div id="drawerResources"></div>
+
+
+</div>
         <!-- Join CTA Section -->
         <section class="cta-section">
             <div class="cta-card animate-pop">

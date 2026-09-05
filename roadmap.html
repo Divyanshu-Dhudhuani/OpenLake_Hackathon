@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenLake - Tech Roadmaps</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+    </script>
+    <style>
+        .roadmap-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .track-selector {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 30px 0 40px;
+            flex-wrap: wrap;
+        }
+
+        .track-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            padding: 10px 22px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .track-btn.active, .track-btn:hover {
+            background: #00a8e8;
+            color: #fff;
+            border-color: #00a8e8;
+            box-shadow: 0 4px 15px rgba(0, 168, 232, 0.4);
+        }
+
+        .roadmap-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-left: 30px;
+            border-left: 3px solid rgba(0, 168, 232, 0.3);
+        }
+
+        .node-card {
+            position: relative;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 20px 24px;
+            margin-bottom: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .node-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(0, 168, 232, 0.2);
+        }
+
+        .node-card::before {
+            content: '';
+            position: absolute;
+            left: -43px;
+            top: 24px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #00a8e8;
+            border: 4px solid var(--bg-color);
+            box-shadow: 0 0 10px #00a8e8;
+        }
+
+        .node-step {
+            font-size: 0.85rem;
+            color: #00a8e8;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .node-title {
+            font-size: 1.3rem;
+            margin: 6px 0;
+            color: var(--text-primary);
+        }
+
+        .node-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Sidebar Modal */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1050;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 100%;
+            max-width: 420px;
+            height: 100vh;
+            background: var(--card-bg);
+            border-left: 1px solid var(--card-border);
+            backdrop-filter: blur(16px);
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            overflow-y: auto;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1100;
+        }
+
+        .drawer.active {
+            right: 0;
+        }
+
+        .close-drawer {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            float: right;
+        }
+
+        .resource-link {
+            display: inline-block;
+            margin-top: 8px;
+            color: #00a8e8;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .resource-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bgCanvas"></canvas>
+
+    <button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle theme">
+        <span id="themeIcon">🌙</span>
+        <span id="themeText">Dark</span>
+    </button>
+
+    <main class="roadmap-container">
+        <div style="text-align: center;">
+            <span class="badge" style="background: rgba(0,168,232,0.15); color: #00a8e8; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem;">LEARNING PATHWAYS</span>
+            <h1 style="font-size: 2.5rem; margin: 12px 0 8px;">Interactive Tech Roadmaps</h1>
+            <p style="color: var(--text-secondary); font-size: 1.1rem;">Click on any step to open curated resources, assigned mentors, and practice repos.</p>
+        </div>
+
+        <div class="track-selector">
+            <button class="track-btn active" onclick="loadTrack('webdev')">🌐 Web Development</button>
+            <button class="track-btn" onclick="loadTrack('appdev')">📱 App Development</button>
+            <button class="track-btn" onclick="loadTrack('aiml')">🤖 AI / ML</button>
+        </div>
+
+        <div class="roadmap-timeline" id="timeline">
+            <!-- Dynamically populated via script -->
+        </div>
+    </main>
+
+    <!-- Side Drawer -->
+    <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+    <div class="drawer" id="drawer">
+        <button class="close-drawer" onclick="closeDrawer()">&times;</button>
+        <h2 id="drawerTitle" style="margin-top: 10px;">Topic Title</h2>
+        <p id="drawerDesc" style="color: var(--text-secondary); margin: 12px 0;"></p>
+        <hr style="border: none; border-top: 1px solid var(--card-border); margin: 20px 0;">
+        
+        <h3>📚 Recommended Resources</h3>
+        <div id="drawerResources"></div>
+
+        <h3 style="margin-top: 20px;">👨‍💻 OpenLake Mentor</h3>
+        <div id="drawerMentor" style="margin-top: 8px; color: var(--text-primary); font-weight: 600;"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        const roadmapData = {
+            webdev: [
+                { step: "Step 1", title: "Git & Version Control", desc: "Master branches, pull requests, and Git workflows.", mentor: "Ashish Kumar Dash", resources: ["Official Git Docs", "GitHub Skills Interactive Guide"] },
+                { step: "Step 2", title: "HTML, CSS & Modern JS", desc: "Learn DOM manipulation, async JavaScript, and responsive design.", mentor: "Garvit Sharma", resources: ["MDN Web Docs", "JavaScript.info"] },
+                { step: "Step 3", title: "Frontend Frameworks (React)", desc: "Build dynamic web UIs using React, hooks, and state management.", mentor: "Aditya Kumar Gautam", resources: ["React Official Documentation"] },
+                { step: "Step 4", title: "Backend API & Databases", desc: "Build REST & GraphQL APIs using Node.js/Express and PostgreSQL.", mentor: "Rudra Dudhat", resources: ["Express.js Docs", "PostgreSQL Tutorial"] }
+            ],
+            appdev: [
+                { step: "Step 1", title: "Dart & Flutter Basics", desc: "Understand Flutter architecture and cross-platform UI widgets.", mentor: "Lakshya Soni", resources: ["Flutter Docs", "Dart Language Tour"] },
+                { step: "Step 2", title: "State Management", desc: "Master Provider, Riverpod, or BLoC patterns for app state.", mentor: "Kamireddi Jaswanth Kumar", resources: ["Flutter State Management Guide"] }
+            ],
+            aiml: [
+                { step: "Step 1", title: "Python & Data Processing", desc: "Learn NumPy, Pandas, and data analysis fundamentals.", mentor: "Taha Hussain", resources: ["Kaggle Python Course", "Pandas Docs"] },
+                { step: "Step 2", title: "Machine Learning Foundations", desc: "Build models using Scikit-Learn and understand core algorithms.", mentor: "Akshat Kansal", resources: ["Scikit-Learn User Guide"] }
+            ]
+        };
+
+        function loadTrack(trackKey) {
+            document.querySelectorAll('.track-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const timeline = document.getElementById('timeline');
+            timeline.innerHTML = '';
+
+            roadmapData[trackKey].forEach((node, idx) => {
+                const card = document.createElement('div');
+                card.className = 'node-card';
+                card.onclick = () => openDrawer(node);
+                card.innerHTML = `
+                    <div class="node-step">${node.step}</div>
+                    <div class="node-title">${node.title}</div>
+                    <div class="node-desc">${node.desc}</div>
+                `;
+                timeline.appendChild(card);
+            });
+        }
+
+        function openDrawer(node) {
+            document.getElementById('drawerTitle').textContent = node.title;
+            document.getElementById('drawerDesc').textContent = node.desc;
+            document.getElementById('drawerMentor').textContent = node.mentor;
+
+            const resContainer = document.getElementById('drawerResources');
+            resContainer.innerHTML = node.resources.map(r => `<div><a href="#" class="resource-link">📖 ${r}</a></div>`).join('');
+
+            document.getElementById('drawerOverlay').classList.add('active');
+            document.getElementById('drawer').classList.add('active');
+        }
+
+        function closeDrawer() {
+            document.getElementById('drawerOverlay').classList.remove('active');
+            document.getElementById('drawer').classList.remove('active');
+        }
+
+        // Initialize Web Dev on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTrack('webdev');
+        });
+    </script>
+</body>
+</html>

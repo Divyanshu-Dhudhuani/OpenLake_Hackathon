@@ -275,4 +275,79 @@ document.addEventListener('DOMContentLoaded', () => {
     initParticles();
     animate();
 }); 
+// Roadmap Interactivity Logic
+const roadmapData = {
+    webdev: [
+        { step: "Step 1", title: "Git & Version Control", desc: "Master branches, pull requests, and Git workflows.", mentor: "Ashish Kumar Dash", resources: ["Official Git Docs", "GitHub Skills Interactive Guide"] },
+        { step: "Step 2", title: "HTML, CSS & Modern JS", desc: "Learn DOM manipulation, async JavaScript, and responsive design.", mentor: "Garvit Sharma", resources: ["MDN Web Docs", "JavaScript.info"] },
+        { step: "Step 3", title: "Frontend Frameworks (React)", desc: "Build dynamic web UIs using React, hooks, and state management.", mentor: "Aditya Kumar Gautam", resources: ["React Official Documentation"] },
+        { step: "Step 4", title: "Backend API & Databases", desc: "Build REST & GraphQL APIs using Node.js/Express and PostgreSQL.", mentor: "Rudra Dudhat", resources: ["Express.js Docs", "PostgreSQL Tutorial"] }
+    ],
+    appdev: [
+        { step: "Step 1", title: "Dart & Flutter Basics", desc: "Understand Flutter architecture and cross-platform UI widgets.", mentor: "Lakshya Soni", resources: ["Flutter Docs", "Dart Language Tour"] },
+        { step: "Step 2", title: "State Management", desc: "Master Provider, Riverpod, or BLoC patterns for app state.", mentor: "Kamireddi Jaswanth Kumar", resources: ["Flutter State Management Guide"] }
+    ],
+    aiml: [
+        { step: "Step 1", title: "Python & Data Processing", desc: "Learn NumPy, Pandas, and data analysis fundamentals.", mentor: "Taha Hussain", resources: ["Kaggle Python Course", "Pandas Docs"] },
+        { step: "Step 2", title: "Machine Learning Foundations", desc: "Build models using Scikit-Learn and understand core algorithms.", mentor: "Akshat Kansal", resources: ["Scikit-Learn User Guide"] }
+    ]
+};
 
+function loadTrack(trackKey, evt) {
+    if (evt) {
+        document.querySelectorAll('.track-btn').forEach(btn => btn.classList.remove('active'));
+        evt.target.classList.add('active');
+    }
+
+    const timeline = document.getElementById('timeline');
+    if (!timeline) return;
+
+    timeline.innerHTML = '';
+
+    roadmapData[trackKey].forEach((node) => {
+        const card = document.createElement('div');
+        card.className = 'node-card';
+        card.onclick = () => openDrawer(node);
+        card.innerHTML = `
+            <div class="node-step">${node.step}</div>
+            <div class="node-title">${node.title}</div>
+            <div class="node-desc">${node.desc}</div>
+        `;
+        timeline.appendChild(card);
+    });
+}
+
+function openDrawer(node) {
+    const drawerTitle = document.getElementById('drawerTitle');
+    const drawerDesc = document.getElementById('drawerDesc');
+    const drawerMentor = document.getElementById('drawerMentor');
+    const resContainer = document.getElementById('drawerResources');
+
+    if (drawerTitle) drawerTitle.textContent = node.title;
+    if (drawerDesc) drawerDesc.textContent = node.desc;
+    if (drawerMentor) drawerMentor.textContent = node.mentor;
+
+    if (resContainer) {
+        // Rendered as non-clickable styled resource items
+        resContainer.innerHTML = node.resources.map(r => `
+            <div class="resource-item">
+                <span>📖</span> ${r}
+            </div>
+        `).join('');
+    }
+
+    document.getElementById('drawerOverlay')?.classList.add('active');
+    document.getElementById('drawer')?.classList.add('active');
+}
+
+function closeDrawer() {
+    document.getElementById('drawerOverlay')?.classList.remove('active');
+    document.getElementById('drawer')?.classList.remove('active');
+}
+
+// Automatically populate the default 'webdev' track on homepage load
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('timeline')) {
+        loadTrack('webdev');
+    }
+});
