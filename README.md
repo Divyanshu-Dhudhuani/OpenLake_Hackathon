@@ -22,7 +22,7 @@ The official web platform for **OpenLake**, the open-source community of IIT Bhi
 * **"First PR" Terminal Sandbox:** An in-browser interactive terminal simulator that guides absolute beginners through core Git commands (`git clone`, `git checkout`, `git commit`, `git push`) before they contribute to real repositories.
 * **Dynamic Canvas Background:** A lightweight, persistent particle animation powered by HTML5 Canvas that subtly reacts to page interactions.
 * **Responsive Single-Page Architecture:** A clean, modular layout built to fit seamlessly across all device screen sizes.
-
+* **Easter egg:** Press the logo to see magic!
 ---
 
 ## 🛠️ Tech Stack & Libraries
