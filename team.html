@@ -75,6 +75,84 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
+        /* Filter & Search Styles */
+.filter-container {
+    max-width: 800px;
+    margin: 30px auto 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 450px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border-radius: 25px;
+    border: 2px solid rgba(0, 168, 232, 0.3);
+    background: rgba(255, 255, 255, 0.9);
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 31, 63, 0.05);
+}
+
+.search-input:focus {
+    border-color: #00a8e8;
+    box-shadow: 0 0 15px rgba(0, 168, 232, 0.3);
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(0, 168, 232, 0.3);
+    color: #001f3f;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: #00a8e8;
+    color: #ffffff;
+    border-color: #00a8e8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 168, 232, 0.3);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.no-results {
+    display: none;
+    color: #001f3f;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
     </style>
 </head>
 
@@ -92,167 +170,179 @@
         </nav>
     </header>
 
-    <main>
-        <div class="team-container">
-            <span class="badge">MEET THE PRESENT COMMUNITY</span>
-            <h2 style="color: #001f3f; font-size: 2.5rem; margin: 12px 0 8px;">Team Wall</h2>
-            <p style="color: #4a5568; font-size: 1.1rem;">The leaders, mentors, and maintainers driving OpenLake at IIT
-                Bhilai.</p>
+  <main>
+    <div class="team-container">
+        <span class="badge">MEET THE PRESENT COMMUNITY</span>
+        <h2 style="color: #001f3f; font-size: 2.5rem; margin: 12px 0 8px;">Team Wall</h2>
+        <p style="color: #4a5568; font-size: 1.1rem;">The leaders, mentors, and maintainers driving OpenLake at IIT Bhilai.</p>
 
-            <!-- Secretary -->
-            <h3 class="category-title">Secretary</h3>
-            <div class="team-grid"
-                style="grid-template-columns: repeat(auto-fit, minmax(220px, 280px)); justify-content: center;">
-                <div class="member-card animate-pop">
-                    <img src="./images/ashish-kumar-dash.jpg" alt="Ashish Kumar Dash" class="member-avatar">
-                    <h4 class="member-name">Ashish Kumar Dash</h4>
-                    <div class="member-role">Secretary</div>
-                </div>
-            </div>
-
-            <!-- Domain Leads -->
-            <h3 class="category-title">Domain Leads</h3>
-            <div class="team-grid" style="grid-template-columns: repeat(auto-fit, 240px); justify-content: center;">
-                <div class="member-card animate-pop">
-                    <img src="./images/garvit-sharma.jpg" alt="Garvit Sharma" class="member-avatar">
-                    <h4 class="member-name">Garvit Sharma</h4>
-                    <div class="member-role">Domain Lead</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/aditya-kumar-gautam.jpg" alt="Aditya Kumar Gautam" class="member-avatar">
-                    <h4 class="member-name">Aditya Kumar Gautam</h4>
-                    <div class="member-role">Domain Lead</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/rudra-dudhat.jpg" alt="Rudra Dudhat" class="member-avatar">
-                    <h4 class="member-name">Rudra Dudhat</h4>
-                    <div class="member-role">Domain Lead</div>
-                </div>
-            </div>
-            <!-- Mentors -->
-            <h3 class="category-title">Mentors</h3>
-            <div class="team-grid" style="grid-template-columns: repeat(auto-fit, 240px); justify-content: center;">
-                <div class="member-card animate-pop">
-                    <img src="./images/lakshya-soni.jpg" alt="Lakshya soni" class="member-avatar">
-                    <h4 class="member-name">Lakshya soni</h4>
-                    <div class="member-role">Mentor</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/kamireddi-jaswanth-kumar.jpg" alt="Kamireddi Jaswanth Kumar"
-                        class="member-avatar">
-                    <h4 class="member-name">Kamireddi Jaswanth Kumar</h4>
-                    <div class="member-role">Mentor</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/taha-hussain.jpg" alt="Taha Hussain" class="member-avatar">
-                    <h4 class="member-name">Taha Hussain</h4>
-                    <div class="member-role">Mentor</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/akshat-kansal.jpg" alt="Akshat Kansal" class="member-avatar">
-                    <h4 class="member-name">Akshat Kansal</h4>
-                    <div class="member-role">Mentor</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/sujal-som.jpg" alt="Sujal Som" class="member-avatar">
-                    <h4 class="member-name">Sujal Som</h4>
-                    <div class="member-role">Mentor</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/eashan-hasija.jpg" alt="Eashan Hasija" class="member-avatar">
-                    <h4 class="member-name">Eashan Hasija</h4>
-                    <div class="member-role">Mentor</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/shlok-divyam.jpg" alt="Shlok Divyam" class="member-avatar">
-                    <h4 class="member-name">Shlok Divyam</h4>
-                    <div class="member-role">Mentor</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/siddhi-singh.jpg" alt="Siddhi Singh" class="member-avatar">
-                    <h4 class="member-name">Siddhi Singh</h4>
-                    <div class="member-role">Mentor</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/tanmay-jaiswal.jpg" alt="Tanmay Jaiswal" class="member-avatar">
-                    <h4 class="member-name">Tanmay Jaiswal</h4>
-                    <div class="member-role">Mentor</div>
-                </div>
-            </div>
-
-            <!-- Maintainers -->
-            <h3 class="category-title">Maintainers</h3>
-            <div class="team-grid" style="grid-template-columns: repeat(auto-fit, 240px); justify-content: center;">
-                <div class="member-card animate-pop">
-                    <img src="./images/umap-utkarsh-sharad.jpg" alt="Umap Utkarsh Sharad" class="member-avatar">
-                    <h4 class="member-name">Umap Utkarsh Sharad</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/siddhant-shukla.jpg" alt="Siddhant Shukla" class="member-avatar">
-                    <h4 class="member-name">Siddhant Shukla</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/sanil-saha.jpg" alt="Sanil Saha" class="member-avatar">
-                    <h4 class="member-name">Sanil Saha</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/kotapati-sai-mounika.jpg" alt="Kotapati Sai Mounika" class="member-avatar">
-                    <h4 class="member-name">Kotapati Sai Mounika</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/adhi-agrawal.jpg" alt="Adhi Agrawal" class="member-avatar">
-                    <h4 class="member-name">Adhi Agrawal</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/harshit-kandpal.jpg" alt="Harshit Kandpal" class="member-avatar">
-                    <h4 class="member-name">Harshit Kandpal</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/kushal-agrawal.jpg" alt="Kushal Agrawal" class="member-avatar">
-                    <h4 class="member-name">Kushal Agrawal</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/neil-chitale.jpg" alt="Neil Chitale" class="member-avatar">
-                    <h4 class="member-name">Neil Chitale</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/prashant-sati.jpg" alt="Prashant Sati" class="member-avatar">
-                    <h4 class="member-name">Prashant Sati</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/vidit-shrimali.jpg" alt="Vidit Shrimali" class="member-avatar">
-                    <h4 class="member-name">Vidit Shrimali</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-                <div class="member-card animate-pop">
-                    <img src="./images/harshita-sharma.jpg" alt="Harshita Sharma" class="member-avatar">
-                    <h4 class="member-name">Harshita Sharma</h4>
-                    <div class="member-role">Maintainer</div>
-                </div>
-            </div>
-
-            <!-- Outreach Head -->
-            <h3 class="category-title">Outreach Head</h3>
-            <div class="team-grid"
-                style="grid-template-columns: repeat(auto-fit, minmax(220px, 280px)); justify-content: center;">
-                <div class="member-card animate-pop">
-                    <img src="./images/anushka-rath.jpg" alt="Anushka Rath" class="member-avatar">
-                    <h4 class="member-name">Anushka Rath</h4>
-                    <div class="member-role">Outreach Head</div>
-                </div>
+        <!-- Live Search & Category Filter Controls -->
+        <div class="filter-container">
+            <input type="text" id="memberSearch" placeholder="Search member by name..." class="search-input" autocomplete="off">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-role="all">All</button>
+                <button class="filter-btn" data-role="secretary">Secretary</button>
+                <button class="filter-btn" data-role="domain lead">Domain Leads</button>
+                <button class="filter-btn" data-role="mentor">Mentors</button>
+                <button class="filter-btn" data-role="maintainer">Maintainers</button>
+                <button class="filter-btn" data-role="outreach head">Outreach Head</button>
             </div>
         </div>
-    </main>
 
+        <div id="noResults" class="no-results">No team members match your search.</div>
+
+        <!-- Secretary -->
+        <h3 class="category-title">Secretary</h3>
+        <div class="team-grid" style="grid-template-columns: repeat(auto-fit, 240px); justify-content: center;">
+            <div class="member-card animate-pop">
+                <img src="./images/ashish-kumar-dash.jpg" alt="Ashish Kumar Dash" class="member-avatar">
+                <h4 class="member-name">Ashish Kumar Dash</h4>
+                <div class="member-role">Secretary</div>
+            </div>
+        </div>
+
+        <!-- Domain Leads -->
+        <h3 class="category-title">Domain Leads</h3>
+        <div class="team-grid" style="grid-template-columns: repeat(auto-fit, 240px); justify-content: center;">
+            <div class="member-card animate-pop">
+                <img src="./images/garvit-sharma.jpg" alt="Garvit Sharma" class="member-avatar">
+                <h4 class="member-name">Garvit Sharma</h4>
+                <div class="member-role">Domain Lead</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/aditya-kumar-gautam.jpg" alt="Aditya Kumar Gautam" class="member-avatar">
+                <h4 class="member-name">Aditya Kumar Gautam</h4>
+                <div class="member-role">Domain Lead</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/rudra-dudhat.jpg" alt="Rudra Dudhat" class="member-avatar">
+                <h4 class="member-name">Rudra Dudhat</h4>
+                <div class="member-role">Domain Lead</div>
+            </div>
+        </div>
+
+        <!-- Mentors -->
+        <h3 class="category-title">Mentors</h3>
+        <div class="team-grid" style="grid-template-columns: repeat(auto-fit, 240px); justify-content: center;">
+            <div class="member-card animate-pop">
+                <img src="./images/lakshya-soni.jpg" alt="Lakshya soni" class="member-avatar">
+                <h4 class="member-name">Lakshya soni</h4>
+                <div class="member-role">Mentor</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/kamireddi-jaswanth-kumar.jpg" alt="Kamireddi Jaswanth Kumar" class="member-avatar">
+                <h4 class="member-name">Kamireddi Jaswanth Kumar</h4>
+                <div class="member-role">Mentor</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/taha-hussain.jpg" alt="Taha Hussain" class="member-avatar">
+                <h4 class="member-name">Taha Hussain</h4>
+                <div class="member-role">Mentor</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/akshat-kansal.jpg" alt="Akshat Kansal" class="member-avatar">
+                <h4 class="member-name">Akshat Kansal</h4>
+                <div class="member-role">Mentor</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/sujal-som.jpg" alt="Sujal Som" class="member-avatar">
+                <h4 class="member-name">Sujal Som</h4>
+                <div class="member-role">Mentor</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/eashan-hasija.jpg" alt="Eashan Hasija" class="member-avatar">
+                <h4 class="member-name">Eashan Hasija</h4>
+                <div class="member-role">Mentor</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/shlok-divyam.jpg" alt="Shlok Divyam" class="member-avatar">
+                <h4 class="member-name">Shlok Divyam</h4>
+                <div class="member-role">Mentor</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/siddhi-singh.jpg" alt="Siddhi Singh" class="member-avatar">
+                <h4 class="member-name">Siddhi Singh</h4>
+                <div class="member-role">Mentor</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/tanmay-jaiswal.jpg" alt="Tanmay Jaiswal" class="member-avatar">
+                <h4 class="member-name">Tanmay Jaiswal</h4>
+                <div class="member-role">Mentor</div>
+            </div>
+        </div>
+
+        <!-- Maintainers -->
+        <h3 class="category-title">Maintainers</h3>
+        <div class="team-grid" style="grid-template-columns: repeat(auto-fit, 240px); justify-content: center;">
+            <div class="member-card animate-pop">
+                <img src="./images/umap-utkarsh-sharad.jpg" alt="Umap Utkarsh Sharad" class="member-avatar">
+                <h4 class="member-name">Umap Utkarsh Sharad</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/siddhant-shukla.jpg" alt="Siddhant Shukla" class="member-avatar">
+                <h4 class="member-name">Siddhant Shukla</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/sanil-saha.jpg" alt="Sanil Saha" class="member-avatar">
+                <h4 class="member-name">Sanil Saha</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/kotapati-sai-mounika.jpg" alt="Kotapati Sai Mounika" class="member-avatar">
+                <h4 class="member-name">Kotapati Sai Mounika</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/adhi-agrawal.jpg" alt="Adhi Agrawal" class="member-avatar">
+                <h4 class="member-name">Adhi Agrawal</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/harshit-kandpal.jpg" alt="Harshit Kandpal" class="member-avatar">
+                <h4 class="member-name">Harshit Kandpal</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/kushal-agrawal.jpg" alt="Kushal Agrawal" class="member-avatar">
+                <h4 class="member-name">Kushal Agrawal</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/neil-chitale.jpg" alt="Neil Chitale" class="member-avatar">
+                <h4 class="member-name">Neil Chitale</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/prashant-sati.jpg" alt="Prashant Sati" class="member-avatar">
+                <h4 class="member-name">Prashant Sati</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/vidit-shrimali.jpg" alt="Vidit Shrimali" class="member-avatar">
+                <h4 class="member-name">Vidit Shrimali</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+            <div class="member-card animate-pop">
+                <img src="./images/harshita-sharma.jpg" alt="Harshita Sharma" class="member-avatar">
+                <h4 class="member-name">Harshita Sharma</h4>
+                <div class="member-role">Maintainer</div>
+            </div>
+        </div>
+
+        <!-- Outreach Head -->
+        <h3 class="category-title">Outreach Head</h3>
+        <div class="team-grid" style="grid-template-columns: repeat(auto-fit, 240px); justify-content: center;">
+            <div class="member-card animate-pop">
+                <img src="./images/anushka-rath.jpg" alt="Anushka Rath" class="member-avatar">
+                <h4 class="member-name">Anushka Rath</h4>
+                <div class="member-role">Outreach Head</div>
+            </div>
+        </div>
+    </div>
+</main>
+    
     <script src="script.js" defer></script>
 </body>
 
