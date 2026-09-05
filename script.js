@@ -58,18 +58,18 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 document.addEventListener('DOMContentLoaded', () => {
-  const cards = document.querySelectorAll('.animate-pop');
+    const cards = document.querySelectorAll('.animate-pop');
 
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
 
-  cards.forEach(card => observer.observe(card));
+    cards.forEach(card => observer.observe(card));
 });
 document.addEventListener('DOMContentLoaded', () => {
   const animatedElements = document.querySelectorAll('.animate-pop');
@@ -90,3 +90,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   animatedElements.forEach(el => observer.observe(el));
 });
+
+
