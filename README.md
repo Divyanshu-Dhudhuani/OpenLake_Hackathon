@@ -8,6 +8,8 @@ Credit:-
 2.Comic Relief font from fonts.google.com
 <br>
 3.All information about the club has been take from OpenLake.in
+<br>
+4.I have used AI to write code and generate the README
 # 🌊 OpenLake Website
 
 The official web platform for **OpenLake**, the open-source community of IIT Bhilai. This website introduces visitors to our organization, showcases our technical domains and active projects, and provides beginners with interactive learning tools directly on the landing page.
