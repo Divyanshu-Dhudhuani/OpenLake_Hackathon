@@ -230,3 +230,25 @@ html, body {
 .navbar {
   overflow: hidden;
 }
+
+/* Animated mini-logo particle styling */
+.logo-pop-particle {
+  position: fixed;
+  width: 32px;
+  height: 32px;
+  pointer-events: none; /* Prevents mini-logos from blocking clicks */
+  z-index: 9999;
+  animation: logoExplode 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Keyframes for outward trajectory, rotation, and fading */
+@keyframes logoExplode {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0.3) rotate(var(--rot));
+  }
+}
