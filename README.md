@@ -49,5 +49,4 @@ To run this project locally on your machine:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/openlake/openlake.github.io.git](https://github.com/openlake/openlake.github.io.git)
-   cd openlake.github.io
+   git clone https://github.com/Divyanshu-Dhudhuani/OpenLake_Hackathon.git
