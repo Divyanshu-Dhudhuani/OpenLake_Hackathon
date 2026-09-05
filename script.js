@@ -90,5 +90,68 @@ document.addEventListener('DOMContentLoaded', () => {
 
   animatedElements.forEach(el => observer.observe(el));
 });
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('memberSearch');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.member-card');
+    const categoryTitles = document.querySelectorAll('.category-title');
+    const noResultsMsg = document.getElementById('noResults');
+
+    function filterMembers() {
+        const query = searchInput.value.toLowerCase().trim();
+        const activeRole = document.querySelector('.filter-btn.active').dataset.role;
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const name = card.querySelector('.member-name').textContent.toLowerCase();
+            const role = card.querySelector('.member-role').textContent.toLowerCase();
+
+            const matchesSearch = name.includes(query);
+            const matchesRole = activeRole === 'all' || role === activeRole;
+
+            if (matchesSearch && matchesRole) {
+                card.style.display = 'block';
+                card.classList.remove('fade-in');
+                // Trigger reflow to restart animation
+                void card.offsetWidth;
+                card.classList.add('fade-in');
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // Hide category titles if no cards in that section are visible
+        categoryTitles.forEach(title => {
+            const grid = title.nextElementSibling;
+            if (grid && grid.classList.contains('team-grid')) {
+                const hasVisibleCards = Array.from(grid.querySelectorAll('.member-card'))
+                    .some(card => card.style.display !== 'none');
+                
+                title.style.display = hasVisibleCards ? 'block' : 'none';
+                grid.style.display = hasVisibleCards ? 'grid' : 'none';
+            }
+        });
+
+        // Toggle "No results" message
+        if (noResultsMsg) {
+            noResultsMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    }
+
+    // Input listener for live typing
+    if (searchInput) {
+        searchInput.addEventListener('input', filterMembers);
+    }
+
+    // Button click listeners for tag filtering
+    filterButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterMembers();
+        });
+    });
+});
 
 
