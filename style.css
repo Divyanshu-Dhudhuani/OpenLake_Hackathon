@@ -252,3 +252,104 @@ html, body {
     transform: translate(var(--tx), var(--ty)) scale(0.3) rotate(var(--rot));
   }
 }
+/* About Section Styling */
+.about-section {
+  padding: 60px 40px 100px;
+  text-align: left;
+}
+
+.about-section h2 {
+  color: #001f3f;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.about-intro {
+  color: #4a5568;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+/* Cards Layout Container */
+.cards-container {
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: stretch;
+  max-width: 1200px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+/* Glassmorphic Feature Cards */
+.feature-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 168, 232, 0.25);
+  border-radius: 16px;
+  padding: 32px 24px;
+  flex: 1;
+  min-width: 260px;
+  box-shadow: 0 10px 25px rgba(0, 31, 63, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  
+  /* Initial hidden state before popping down */
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.feature-card:hover {
+  transform: translateY(-8px) !important;
+  border-color: #00a8e8;
+  box-shadow: 0 16px 35px rgba(0, 168, 232, 0.2);
+}
+
+.card-step {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: rgba(0, 168, 232, 0.5);
+}
+
+.card-icon {
+  font-size: 1.8rem;
+  color: #00a8e8;
+  margin-bottom: 16px;
+  font-weight: bold;
+}
+
+.feature-card h3 {
+  color: #001f3f;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  color: #4a5568;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Animation trigger class */
+.feature-card.visible {
+  animation: popFromAbove 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Sequential delay for staggered pop */
+.feature-card.visible:nth-child(1) { animation-delay: 0.1s; }
+.feature-card.visible:nth-child(2) { animation-delay: 0.25s; }
+.feature-card.visible:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes popFromAbove {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
