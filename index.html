@@ -1,17 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OpenLake - An Open Road to OpenSource</title>
     <link rel="icon" type="image/png" href="openlake.svg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <header>
+    <header class="navbar">
+        <img src="openlake.svg" alt="OpenLake Logo" id="logo">
         <center>
-        <h1>OpenLake</h1>
+            <h1 id="title">OpenLake</h1>
         </center>
+        <nav class="nav-links">
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#events">Events</a>
+            <a href="#domains">Domains</a>
+        </nav>
     </header>
+    <main>
+        <section id="about" class="page-section">
+            <h2>About Us</h2>
+            <p>Welcome to OpenLake! Learn about our vision, mission, and community.</p>
+        </section>
+
+        <section id="projects" class="page-section">
+            <h2>Projects</h2>
+            <p>Explore open-source projects created and maintained by our members.</p>
+        </section>
+
+        <section id="events" class="page-section">
+            <h2>Events</h2>
+            <p>Check out our upcoming hackathons, workshops, and meetups.</p>
+        </section>
+
+        <section id="domains" class="page-section">
+            <h2>Domains</h2>
+            <p>Discover our core tracks: Web Dev, AI/ML, App Dev, Cybersecurity, and Design.</p>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
+
 </html>
