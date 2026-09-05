@@ -1,1 +1,92 @@
+/* Container positioned at the top left */
+.navbar {
+  display: flex;
+  align-items: center; /* Vertically aligns logo and text */
+  gap: 12px;           /* Space between logo and title */
+  padding: 16px 24px;  /* Spacing around the header */
+}
 
+/* Control logo dimensions */
+#logo {
+  width: 50px;         /* Change width to your desired size (e.g., 40px - 60px) */
+  height: auto;        /* Keeps original image aspect ratio */
+  object-fit: contain;
+}
+
+#title {
+  position: absolute;
+  top: 33px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Enable smooth scrolling across the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Navbar container styling */
+.navbar {
+  position: sticky; /* Keeps navbar visible at the top */
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background-color: #ffffff;
+  z-index: 100;
+}
+
+/* Nav links styling */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: #0070f3; /* Highlight color on hover */
+}
+
+/* Section styling with offset padding so sticky header doesn't cover content */
+.page-section {
+  padding: 80px 24px;
+  min-height: 80vh; /* Gives enough height to scroll smoothly */
+  scroll-margin-top: 60px; /* Offset for top navbar height */
+}
+
+.comic-relief-regular {
+  font-family: "Comic Relief", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.comic-relief-bold {
+  font-family: "Comic Relief", system-ui;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Apply Comic Relief font to every element on the entire site */
+* {
+  font-family: "Comic Relief", system-ui, sans-serif !important;
+}
+
+body {
+  font-family: "Comic Relief", system-ui, sans-serif;
+  font-weight: 400; /* Default weight */
+}
+
+/* Bold elements will automatically use the 700 weight */
+h1, h2, h3, h4, h5, h6, strong, b {
+  font-weight: 700;
+}
